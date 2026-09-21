@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Para vos 🌼</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+body {
+    background: #fff7d6;
+}
+
+.pantalla {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.8s ease;
+}
+
+.pantalla.activa {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   PANTALLA 1
+========================= */
+
+#pantalla1 {
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,0.8),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255,235,150,0.5),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff8d8,
+            #fff0b5,
+            #ffe9a3
+        );
+
+    overflow: hidden;
+}
+
+.contenedor-intro {
+    width: min(90%, 500px);
+    text-align: center;
+    z-index: 5;
+}
+
+.sol {
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: #ffd84d;
+
+    box-shadow:
+        0 0 30px rgba(255,216,77,0.5);
+
+    top: 8%;
+    right: 8%;
+}
+
+.titulo-intro {
+    color: #806b25;
+
+    font-size: clamp(
+        2rem,
+        8vw,
+        3.2rem
+    );
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 2px 0 rgba(255,255,255,0.7);
+}
+
+.texto-intro {
+    color: #806b25;
+
+    font-size: clamp(
+        1rem,
+        4vw,
+        1.3rem
+    );
+
+    line-height: 1.6;
+
+    margin-bottom: 10px;
+}
+
+.texto-pequeno {
+    color: #a38c42;
+
+    font-size: 0.85rem;
+
+    margin-bottom: 28px;
+}
+
+.carga-contenedor {
+    width: 100%;
+    max-width: 350px;
+
+    height: 18px;
+
+    background: rgba(255,255,255,0.6);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    border: 2px solid rgba(207,174,59,0.25);
+}
+
+.carga {
+    width: 0%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd84d,
+            #ffca28,
+            #ffe36e
+        );
+
+    border-radius: 20px;
+
+    transition: width 0.05s linear;
+}
+
+.porcentaje {
+    color: #806b25;
+
+    font-size: 0.9rem;
+
+    margin-top: 10px;
+}
+
+.boton-entrar {
+    margin-top: 25px;
+
+    padding: 13px 30px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #ffd84d;
+
+    color: #735d19;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(190,155,35,0.25);
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.boton-entrar:hover {
+    transform: scale(1.05);
+}
+
+.boton-entrar:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.flor-decorativa {
+    position: absolute;
+
+    color: #ffd83d;
+
+    font-size: 2rem;
+
+    opacity: 0.65;
+
+    animation:
+        flotar 4s ease-in-out infinite;
+}
+
+.flor1 {
+    left: 8%;
+    top: 15%;
+}
+
+.flor2 {
+    left: 15%;
+    bottom: 15%;
+
+    animation-delay: 1s;
+}
+
+.flor3 {
+    right: 12%;
+    bottom: 20%;
+
+    animation-delay: 2s;
+}
+
+.flor4 {
+    right: 20%;
+    top: 35%;
+
+    animation-delay: 0.5s;
+}
+
+@keyframes flotar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================
+   PANTALLA 2
+========================= */
+
+#pantalla2 {
+    background: #fff8d9;
+
+    overflow: hidden;
+
+    touch-action: none;
+}
+
+#canvasFlores {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    touch-action: none;
+}
+
+.titulo-flores {
+    position: absolute;
+
+    top: 5%;
+
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+.titulo-flores h2 {
+    color: #806b25;
+
+    font-size: clamp(
+        1.25rem,
+        5vw,
+        2rem
+    );
+
+    line-height: 1.35;
+
+    text-shadow:
+        0 2px 4px rgba(255,255,255,0.8);
+}
+
+.nivel {
+    position: absolute;
+
+    top: 16%;
+
+    padding: 7px 15px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.65);
+
+    color: #8b7429;
+
+    font-size: 0.85rem;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    backdrop-filter: blur(5px);
+}
+
+.ayuda-zoom {
+    position: absolute;
+
+    bottom: 15%;
+
+    width: min(88%, 500px);
+
+    text-align: center;
+
+    color: #806b25;
+
+    font-size: clamp(
+        0.85rem,
+        3.5vw,
+        1rem
+    );
+
+    line-height: 1.4;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 1px 3px white;
+}
+
+.mensaje-zoom {
+    position: absolute;
+
+    top: 25%;
+
+    padding: 12px 20px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.8);
+
+    color: #806b25;
+
+    font-weight: bold;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.mensaje-zoom.mostrar {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.boton-seguir {
+    position: absolute;
+
+    bottom: 5%;
+    right: 5%;
+
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #ffd84d;
+
+    color: #735d19;
+
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 15;
+
+    box-shadow:
+        0 5px 15px rgba(190,155,35,0.2);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.boton-seguir:hover {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 7px 18px rgba(190,155,35,0.3);
+}
+
+
+/* =========================
+   PANTALLA 3
+========================= */
+
+#pantalla3 {
+
+    background:
+        radial-gradient(
+            circle at 20% 15%,
+            rgba(255,255,255,0.8),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255,222,101,0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff8d8,
+            #fff0b5,
+            #ffe9a3
+        );
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    justify-content: flex-start;
+
+    padding: 40px 20px;
+}
+
+
+/* FLORES DECORATIVAS */
+
+.flor-final {
+    position: fixed;
+
+    font-size: 2.5rem;
+
+    opacity: 0.5;
+
+    pointer-events: none;
+
+    animation:
+        flotar 5s ease-in-out infinite;
+}
+
+.flor-final-1 {
+    top: 5%;
+    left: 6%;
+}
+
+.flor-final-2 {
+    top: 20%;
+    right: 5%;
+
+    animation-delay: 1s;
+}
+
+.flor-final-3 {
+    top: 55%;
+    left: 4%;
+
+    animation-delay: 2s;
+}
+
+.flor-final-4 {
+    bottom: 10%;
+    right: 7%;
+
+    animation-delay: 0.5s;
+}
+
+.flor-final-5 {
+    bottom: 30%;
+    left: 12%;
+
+    animation-delay: 1.5s;
+}
+
+
+/* ADVERTENCIA */
+
+.advertencia {
+
+    position: fixed;
+
+    width: min(
+        90%,
+        420px
+    );
+
+    padding: 30px 24px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,0.82);
+
+    border:
+        2px solid
+        rgba(217,170,47,0.3);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(135,106,30,0.18);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 50;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.advertencia.oculta {
+
+    opacity: 0;
+
+    transform:
+        scale(0.92)
+        translateY(-20px);
+
+    pointer-events: none;
+}
+
+.icono-advertencia {
+    font-size: 2.5rem;
+
+    margin-bottom: 8px;
+}
+
+.advertencia h2 {
+
+    color: #806b25;
+
+    font-size: 1.4rem;
+
+    margin-bottom: 18px;
+}
+
+.advertencia p {
+
+    color: #8b7429;
+
+    line-height: 1.5;
+
+    font-size: 0.95rem;
+
+    margin-bottom: 24px;
+}
+
+.boton-promesa {
+
+    border: none;
+
+    padding: 13px 20px;
+
+    border-radius: 25px;
+
+    background: #f4a9c8;
+
+    color: white;
+
+    font-size: 0.95rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(190,110,145,0.2);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.boton-promesa:hover {
+    transform: scale(1.04);
+}
+
+
+/* CONTENIDO FINAL */
+
+.contenido-final {
+
+    width: min(
+        94%,
+        650px
+    );
+
+    margin: auto;
+
+    padding: 30px 22px 50px;
+
+    opacity: 0;
+
+    filter: blur(12px);
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 1.3s ease,
+        filter 1.3s ease,
+        transform 1.3s ease;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.contenido-final.visible {
+
+    opacity: 1;
+
+    filter: blur(0);
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* ENCABEZADO */
+
+.encabezado-final {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.flor-final-grande {
+
+    font-size: 4rem;
+
+    margin-bottom: 8px;
+
+    animation:
+        flotar 4s ease-in-out infinite;
+}
+
+.encabezado-final h1 {
+
+    color: #806b25;
+
+    font-size:
+        clamp(
+            2rem,
+            8vw,
+            3rem
+        );
+
+    text-shadow:
+        0 2px 0 white;
+}
+
+
+/* TEXTO */
+
+.texto-final {
+
+    padding: 25px 22px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.62);
+
+    border:
+        1px solid
+        rgba(217,170,47,0.2);
+
+    box-shadow:
+        0 10px 30px
+        rgba(135,106,30,0.1);
+
+    color: #66551f;
+
+    font-size:
+        clamp(
+            0.95rem,
+            3.8vw,
+            1.08rem
+        );
+
+    line-height: 1.75;
+}
+
+.texto-final p {
+
+    margin-bottom: 22px;
+}
+
+.texto-final p:last-child {
+
+    margin-bottom: 0;
+}
+
+.te-amo-final {
+
+    text-align: center;
+
+    color: #d89a18;
+
+    font-size:
+        clamp(
+            1.5rem,
+            7vw,
+            2.2rem
+        );
+
+    font-weight: bold;
+
+    margin-top: 30px !important;
+
+    text-shadow:
+        0 2px 8px
+        rgba(255,205,65,0.4);
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .sol {
+        width: 65px;
+        height: 65px;
+
+        top: 7%;
+        right: 7%;
+    }
+
+    .titulo-intro {
+        font-size: 2rem;
+    }
+
+    .texto-intro {
+        font-size: 1rem;
+    }
+
+    .texto-pequeno {
+        font-size: 0.78rem;
+    }
+
+    .titulo-flores {
+        top: 4%;
+    }
+
+    .nivel {
+        top: 15%;
+    }
+
+    .ayuda-zoom {
+        bottom: 13%;
+    }
+
+    .boton-seguir {
+        bottom: 3%;
+
+        padding: 10px 18px;
+
+        font-size: 0.85rem;
+    }
+
+    #pantalla3 {
+        padding:
+            25px 12px 40px;
+    }
+
+    .contenido-final {
+        width: 96%;
+
+        padding:
+            20px 8px 40px;
+    }
+
+    .texto-final {
+        padding:
+            22px 18px;
+
+        line-height: 1.65;
+    }
+
+    .flor-final {
+        font-size: 1.8rem;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PANTALLA 1
+===================================================== -->
+
+<section
+    class="pantalla activa"
+    id="pantalla1"
+>
+
+    <div class="sol"></div>
+
+    <div class="flor-decorativa flor1">🌼</div>
+    <div class="flor-decorativa flor2">🌼</div>
+    <div class="flor-decorativa flor3">🌼</div>
+    <div class="flor-decorativa flor4">🌼</div>
+
+
+    <div class="contenedor-intro">
+
+        <h1 class="titulo-intro">
+            Espero que te guste 🌼
+        </h1>
+
+        <p class="texto-intro">
+            Lo hice con cariño, unas cuantas florcitas y....
+        </p>
+
+        <p class="texto-pequeno">
+            no te vayas a creer tan importante.
+            pero apurate y entra..
+        </p>
+
+
+        <div class="carga-contenedor">
+
+            <div
+                class="carga"
+                id="barraCarga"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="porcentaje"
+            id="porcentaje"
+        >
+            0%
+        </div>
+
+
+        <button
+            class="boton-entrar"
+            id="botonEntrar"
+            disabled
+        >
+            Entrar 🌼
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PANTALLA 2
+===================================================== -->
+
+<section
+    class="pantalla"
+    id="pantalla2"
+>
+
+    <canvas id="canvasFlores"></canvas>
+
+
+    <div class="titulo-flores">
+
+        <h2>
+            Cada flor representa
+            lo mucho que te amo,
+            te reto a intentar contarlas 🌼
+        </h2>
+
+    </div>
+
+
+    <div
+        class="nivel"
+        id="nivel"
+    >
+        Nivel 1
+    </div>
+
+
+    <div
+        class="ayuda-zoom"
+        id="ayudaZoom"
+    >
+        Hazle zoom a las flores y mira lo que hay adentro..
+    </div>
+
+
+    <div
+        class="mensaje-zoom"
+        id="mensajeZoom"
+    >
+        Hay más flores ahí dentro... 🌼
+    </div>
+
+
+    <button
+        class="boton-seguir"
+        id="seguir"
+    >
+        Seguir → 🌼
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     PANTALLA 3
+===================================================== -->
+
+<section
+    class="pantalla"
+    id="pantalla3"
+>
+
+    <div class="flor-final flor-final-1">🌼</div>
+    <div class="flor-final flor-final-2">🌼</div>
+    <div class="flor-final flor-final-3">🌼</div>
+    <div class="flor-final flor-final-4">🌼</div>
+    <div class="flor-final flor-final-5">🌼</div>
+
+
+    <!-- ADVERTENCIA -->
+
+    <div
+        class="advertencia"
+        id="advertencia"
+    >
+
+        <div class="icono-advertencia">
+            ⚠️
+        </div>
+
+        <h2>
+            ADVERTENCIA
+        </h2>
+
+       <p>
+    Tsunami en las playas de Bolivia. 🌊🇧🇴
+    <br><br>
+    Esta parte mirala y leela solo vos,
+     oki?
+</p>
+
+        </p>
+
+        <button
+            id="botonPromesa"
+            class="boton-promesa"
+        >
+            Está bien, pinky promise 🤞
+        </button>
+
+    </div>
+
+
+    <!-- CONTENIDO PERSONAL -->
+
+    <div
+        class="contenido-final"
+        id="contenidoFinal"
+    >
+
+        <div class="encabezado-final">
+
+            <div class="flor-final-grande">
+                🌼
+            </div>
+
+            <h1>
+                Para vos 💛
+            </h1>
+
+        </div>
+
+
+        <div class="texto-final">
+
+            <p>
+                Hola, paseñita.
+            </p>
+
+
+            <p>
+                Espero que hasta ahora esto al menos
+                te haya sacado una sonrisa.
+                Si no, ya sabés... (me tiro de la terraza).
+            </p>
+
+
+            <p>
+                La verdad, no busco excusarme.
+                Sí tenía planeado llevarte un ramo de
+                flores, pero por alguna razón sentí
+                que sería medio complicado, y tal vez
+                no me hubieras aceptado la idea.
+                Conociéndote, capaz me dirías:
+                “KAJLSDKFJA, TRANQUI CHOCO,
+                NO ES NECESARIO”.
+            </p>
+
+
+            <p>
+                Pero estarías tan equivocada, porque
+                al menos para mí sí lo es. Porque quiero
+                que te sientas querida por mí, y esto
+                es lo mínimo que podría hacer por vos.
+                Por eso, espero que por lo menos te haga
+                notar una pequeña pizca de todo el amor
+                que siento por vos.
+            </p>
+
+
+            <p>
+                Prometo que el siguiente año te llevaré
+                personalmente las flores, y espero que
+                nadie me denuncie JAJAJJAJA.
+            </p>
+
+
+            <p>
+                Siguiendo con la temática de esto,
+                quería desearte un feliz Día de la
+                Primavera de una manera un poco más
+                original. No como la jujeña de tu amiga,
+                que solo te mandó un videíto. Me dio
+                rabia porque es como si me hubiera
+                robado la idea, pero obvio, vos sabés
+                que lo mío es más top.
+            </p>
+
+
+            <p>
+                Y algo un poco más hecho por mí.
+                Admito que Chati me ayudó con la
+                programación del HTML y demás, pero
+                los conceptos y los mensajes, todo eso
+                fue pensado por mí, para tu jajajaj.
+            </p>
+
+
+            <p>
+                Para terminar, solo quería decirte que
+                así como coincidimos al momento de
+                hablar y se siente bien (bueno, al menos
+                para mí), yo sé que a vos te da miedo
+                JAJAJA, quería decirte que, en general,
+                haber coincidido con vos es algo
+                realmente único y maravilloso.
+            </p>
+
+
+            <p>
+                Aunque seas de Potosí, ahre.
+            </p>
+
+
+            <p>
+                Por último, espero que las próximas
+                primaveras las empecemos juntos en algún
+                lado, comiendo o paseando en algún lugar.
+                Tipo alguna plaza o el Burger King
+                KAJSDLFKAASDJ. Mentira, pero sí,
+                pasarla juntos comiendo, ah.
+            </p>
+
+
+            <p>
+                Espero que hayas tenido un bonito inicio
+                de la primavera.
+            </p>
+
+
+            <p class="te-amo-final">
+                TE AMOOO. 💛
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* =====================================================
+   PANTALLA 1
+===================================================== */
+
+const pantalla1 =
+    document.getElementById("pantalla1");
+
+const pantalla2 =
+    document.getElementById("pantalla2");
+
+const pantalla3 =
+    document.getElementById("pantalla3");
+
+const barraCarga =
+    document.getElementById("barraCarga");
+
+const porcentaje =
+    document.getElementById("porcentaje");
+
+const botonEntrar =
+    document.getElementById("botonEntrar");
+
+
+let progreso = 0;
+
+
+const intervaloCarga =
+    setInterval(() => {
+
+        progreso++;
+
+        barraCarga.style.width =
+            progreso + "%";
+
+        porcentaje.textContent =
+            progreso + "%";
+
+
+        if (progreso >= 100) {
+
+            clearInterval(intervaloCarga);
+
+            botonEntrar.disabled = false;
+
+        }
+
+    }, 35);
+
+
+
+botonEntrar.addEventListener(
+    "click",
+    () => {
+
+        pantalla1.classList.remove(
+            "activa"
+        );
+
+        setTimeout(() => {
+
+            pantalla2.classList.add(
+                "activa"
+            );
+
+            iniciarFlores();
+
+        }, 500);
+
+    }
+);
+
+
+
+/* =====================================================
+   FLORES
+===================================================== */
+
+const canvas =
+    document.getElementById(
+        "canvasFlores"
+    );
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let ancho = 0;
+let alto = 0;
+
+
+const niveles = [
+
+    {
+        cantidad: 24,
+        tamaño: 46
+    },
+
+    {
+        cantidad: 36,
+        tamaño: 29
+    },
+
+    {
+        cantidad: 50,
+        tamaño: 19
+    },
+
+    {
+        cantidad: 65,
+        tamaño: 13
+    },
+
+    {
+        cantidad: 80,
+        tamaño: 9
+    }
+
+];
+
+
+let nivelActual = 0;
+
+let flores = [];
+
+let zoom = 1;
+
+let objetivoZoom = 1;
+
+
+
+function redimensionarCanvas() {
+
+    const escala =
+        window.devicePixelRatio || 1;
+
+    ancho =
+        window.innerWidth;
+
+    alto =
+        window.innerHeight;
+
+
+    canvas.width =
+        ancho * escala;
+
+    canvas.height =
+        alto * escala;
+
+
+    canvas.style.width =
+        ancho + "px";
+
+    canvas.style.height =
+        alto + "px";
+
+
+    ctx.setTransform(
+        escala,
+        0,
+        0,
+        escala,
+        0,
+        0
+    );
+
+
+    crearFloresNivel(
+        nivelActual
+    );
+
+    dibujarEscena();
+
+}
+
+
+window.addEventListener(
+    "resize",
+    redimensionarCanvas
+);
+
+
+
+function crearFloresNivel(indice) {
+
+    const configuracion =
+        niveles[indice];
+
+    flores = [];
+
+
+    const cantidad =
+        configuracion.cantidad;
+
+
+    const columnas =
+        Math.ceil(
+            Math.sqrt(
+                cantidad * 1.4
+            )
+        );
+
+
+    const filas =
+        Math.ceil(
+            cantidad / columnas
+        );
+
+
+    const espacioX =
+        ancho / columnas;
+
+    const espacioY =
+        alto / filas;
+
+
+    let contador = 0;
+
+
+    for (
+        let fila = 0;
+        fila < filas;
+        fila++
+    ) {
+
+        for (
+            let columna = 0;
+            columna < columnas;
+            columna++
+        ) {
+
+            if (
+                contador >= cantidad
+            ) {
+                break;
+            }
+
+
+            const variacionX =
+                (
+                    Math.random() - 0.5
+                )
+                *
+                espacioX
+                *
+                0.35;
+
+
+            const variacionY =
+                (
+                    Math.random() - 0.5
+                )
+                *
+                espacioY
+                *
+                0.35;
+
+
+            const x =
+                columna * espacioX
+                +
+                espacioX / 2
+                +
+                variacionX;
+
+
+            const y =
+                fila * espacioY
+                +
+                espacioY / 2
+                +
+                variacionY;
+
+
+            flores.push({
+
+                x: x,
+
+                y: y,
+
+                tamaño:
+                    configuracion.tamaño
+                    *
+                    (
+                        0.85
+                        +
+                        Math.random()
+                        * 0.3
+                    ),
+
+                rotacion:
+                    Math.random()
+                    *
+                    Math.PI
+                    * 2
+
+            });
+
+
+            contador++;
+
+        }
+
+    }
+
+}
+
+
+
+function dibujarFlor(
+    x,
+    y,
+    tamaño,
+    rotacion
+) {
+
+    ctx.save();
+
+    ctx.translate(
+        x,
+        y
+    );
+
+    ctx.rotate(
+        rotacion
+    );
+
+
+    const radioPetalo =
+        tamaño * 0.42;
+
+    const radioCentro =
+        tamaño * 0.24;
+
+
+    for (
+        let i = 0;
+        i < 6;
+        i++
+    ) {
+
+        const angulo =
+            (
+                Math.PI * 2 / 6
+            )
+            * i;
+
+
+        const px =
+            Math.cos(angulo)
+            *
+            tamaño
+            *
+            0.32;
+
+
+        const py =
+            Math.sin(angulo)
+            *
+            tamaño
+            *
+            0.32;
+
+
+        const gradiente =
+            ctx.createRadialGradient(
+                px,
+                py,
+                1,
+                px,
+                py,
+                radioPetalo
+            );
+
+
+        gradiente.addColorStop(
+            0,
+            "#fff7a8"
+        );
+
+        gradiente.addColorStop(
+            0.6,
+            "#ffd83d"
+        );
+
+        gradiente.addColorStop(
+            1,
+            "#f5bd24"
+        );
+
+
+        ctx.fillStyle =
+            gradiente;
+
+
+        ctx.beginPath();
+
+
+        ctx.ellipse(
+            px,
+            py,
+            radioPetalo * 0.75,
+            radioPetalo,
+            angulo,
+            0,
+            Math.PI * 2
+        );
+
+
+        ctx.fill();
+
+    }
+
+
+    const centro =
+        ctx.createRadialGradient(
+            0,
+            0,
+            1,
+            0,
+            0,
+            radioCentro
+        );
+
+
+    centro.addColorStop(
+        0,
+        "#ffe985"
+    );
+
+    centro.addColorStop(
+        0.5,
+        "#d99d18"
+    );
+
+    centro.addColorStop(
+        1,
+        "#b77a0c"
+    );
+
+
+    ctx.fillStyle =
+        centro;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        0,
+        0,
+        radioCentro,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.65)";
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        -radioCentro * 0.35,
+        -radioCentro * 0.35,
+        radioCentro * 0.18,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.restore();
+
+}
+
+
+
+function dibujarEscena() {
+
+    ctx.clearRect(
+        0,
+        0,
+        ancho,
+        alto
+    );
+
+
+    const fondo =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            alto
+        );
+
+
+    fondo.addColorStop(
+        0,
+        "#fff9dc"
+    );
+
+    fondo.addColorStop(
+        1,
+        "#fff0b5"
+    );
+
+
+    ctx.fillStyle =
+        fondo;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        ancho,
+        alto
+    );
+
+
+    ctx.save();
+
+
+    ctx.translate(
+        ancho / 2,
+        alto / 2
+    );
+
+
+    ctx.scale(
+        zoom,
+        zoom
+    );
+
+
+    ctx.translate(
+        -ancho / 2,
+        -alto / 2
+    );
+
+
+    flores.forEach(
+        flor => {
+
+            dibujarFlor(
+                flor.x,
+                flor.y,
+                flor.tamaño,
+                flor.rotacion
+            );
+
+        }
+    );
+
+
+    ctx.restore();
+
+}
+
+
+
+function animarZoom() {
+
+    zoom +=
+        (
+            objetivoZoom - zoom
+        )
+        * 0.18;
+
+
+    if (
+        Math.abs(
+            objetivoZoom - zoom
+        ) < 0.001
+    ) {
+
+        zoom =
+            objetivoZoom;
+
+    }
+
+
+    dibujarEscena();
+
+
+    requestAnimationFrame(
+        animarZoom
+    );
+
+}
+
+
+
+function entrarAlSiguienteNivel() {
+
+    if (
+        nivelActual
+        >= niveles.length - 1
+    ) {
+
+        objetivoZoom = 1;
+
+        return;
+
+    }
+
+
+    nivelActual++;
+
+
+    zoom = 1;
+
+    objetivoZoom = 1;
+
+
+    crearFloresNivel(
+        nivelActual
+    );
+
+
+    document.getElementById(
+        "nivel"
+    ).textContent =
+        "Nivel "
+        +
+        (nivelActual + 1);
+
+
+    const mensaje =
+        document.getElementById(
+            "mensajeZoom"
+        );
+
+
+    mensaje.classList.add(
+        "mostrar"
+    );
+
+
+    setTimeout(() => {
+
+        mensaje.classList.remove(
+            "mostrar"
+        );
+
+    }, 1600);
+
+}
+
+
+
+/* =====================================================
+   MOUSE
+===================================================== */
+
+canvas.addEventListener(
+    "wheel",
+    (evento) => {
+
+        evento.preventDefault();
+
+
+        if (
+            evento.deltaY < 0
+        ) {
+
+            objetivoZoom += 0.35;
+
+        } else {
+
+            objetivoZoom -= 0.35;
+
+        }
+
+
+        objetivoZoom =
+            Math.max(
+                1,
+                Math.min(
+                    objetivoZoom,
+                    3
+                )
+            );
+
+
+        if (
+            objetivoZoom >= 2.5
+        ) {
+
+            entrarAlSiguienteNivel();
+
+        }
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+
+/* =====================================================
+   PINCH EN CELULAR
+===================================================== */
+
+let distanciaInicial = null;
+
+
+function obtenerDistancia(
+    toque1,
+    toque2
+) {
+
+    const dx =
+        toque1.clientX
+        -
+        toque2.clientX;
+
+
+    const dy =
+        toque1.clientY
+        -
+        toque2.clientY;
+
+
+    return Math.sqrt(
+        dx * dx
+        +
+        dy * dy
+    );
+
+}
+
+
+
+canvas.addEventListener(
+    "touchstart",
+    (evento) => {
+
+        if (
+            evento.touches.length === 2
+        ) {
+
+            distanciaInicial =
+                obtenerDistancia(
+                    evento.touches[0],
+                    evento.touches[1]
+                );
+
+        }
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+
+canvas.addEventListener(
+    "touchmove",
+    (evento) => {
+
+        if (
+            evento.touches.length !== 2
+        ) {
+
+            return;
+
+        }
+
+
+        evento.preventDefault();
+
+
+        const distanciaActual =
+            obtenerDistancia(
+                evento.touches[0],
+                evento.touches[1]
+            );
+
+
+        if (
+            distanciaInicial === null
+        ) {
+
+            distanciaInicial =
+                distanciaActual;
+
+            return;
+
+        }
+
+
+        const diferencia =
+            distanciaActual
+            -
+            distanciaInicial;
+
+
+        objetivoZoom +=
+            diferencia * 0.008;
+
+
+        objetivoZoom =
+            Math.max(
+                1,
+                Math.min(
+                    objetivoZoom,
+                    3
+                )
+            );
+
+
+        distanciaInicial =
+            distanciaActual;
+
+
+        if (
+            objetivoZoom >= 2.5
+        ) {
+
+            entrarAlSiguienteNivel();
+
+            distanciaInicial =
+                null;
+
+        }
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+
+canvas.addEventListener(
+    "touchend",
+    () => {
+
+        distanciaInicial = null;
+
+    }
+);
+
+
+
+function iniciarFlores() {
+
+    redimensionarCanvas();
+
+    requestAnimationFrame(
+        animarZoom
+    );
+
+}
+
+
+
+/* =====================================================
+   BOTÓN DE PANTALLA 2
+===================================================== */
+
+document
+    .getElementById("seguir")
+    .addEventListener(
+        "click",
+        () => {
+
+            pantalla2.classList.remove(
+                "activa"
+            );
+
+
+            setTimeout(() => {
+
+                pantalla3.classList.add(
+                    "activa"
+                );
+
+            }, 500);
+
+        }
+    );
+
+
+
+/* =====================================================
+   PANTALLA 3
+===================================================== */
+
+const botonPromesa =
+    document.getElementById(
+        "botonPromesa"
+    );
+
+const advertencia =
+    document.getElementById(
+        "advertencia"
+    );
+
+const contenidoFinal =
+    document.getElementById(
+        "contenidoFinal"
+    );
+
+
+botonPromesa.addEventListener(
+    "click",
+    () => {
+
+        advertencia.classList.add(
+            "oculta"
+        );
+
+
+        setTimeout(() => {
+
+            contenidoFinal.classList.add(
+                "visible"
+            );
+
+        }, 500);
+
+    }
+);
+
+</script>
+
+</body>
+</html>
